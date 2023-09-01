@@ -14,7 +14,7 @@ import { OneSignal } from 'react-native-onesignal';
 // Remove this after resolving the warnings.
 LogBox.ignoreAllLogs([
   'Warning: componentWillReceiveProps',
-  'Warning: React.createFactory()',
+  'Warning: React.createElement()',
   'FlatList: Calling `getNode()`',
   'Non-serializable values',
   'ReactNative.NativeModules',
@@ -33,22 +33,22 @@ const App = () => {
   const onReceived = () => dispatch(Actions.setNotification());
   const onOpened = () => dispatch(Actions.setNotification());
 
-  useEffect(() => {
+  // useEffect(() => {
 
-    if (isSplashed) {
-        OneSignal.initialize(CONFIG.ONESIGNAL_APP_ID);
-      }
+  //   if (isSplashed) {
+  //       OneSignal.initialize(CONFIG.ONESIGNAL_APP_ID);
+  //     }
 
-    OneSignal.Debug.setLogLevel(2);
-    OneSignal.Notifications.addEventListener('received', onReceived);
-    OneSignal.Notifications.addEventListener('opened', onOpened);
-    OneSignal.Notifications.addEventListener('ids', onIds);
-    return () => {
-      OneSignal.Notifications.removeEventListener('received', onReceived);
-      OneSignal.Notifications.removeEventListener('opened', onOpened);
-      OneSignal.Notifications.removeEventListener('ids', onIds);
-    };
-  }, [isSplashed]);
+  //   OneSignal.Debug.setLogLevel(2);
+  //   OneSignal.Notifications.addEventListener('received', onReceived);
+  //   OneSignal.Notifications.addEventListener('opened', onOpened);
+  //   OneSignal.Notifications.addEventListener('ids', onIds);
+  //   return () => {
+  //     OneSignal.Notifications.removeEventListener('received', onReceived);
+  //     OneSignal.Notifications.removeEventListener('opened', onOpened);
+  //     OneSignal.Notifications.removeEventListener('ids', onIds);
+  //   };
+  // }, [isSplashed]);
 
   useEffect(() => {
     const toggleNetworkState = (state) => {

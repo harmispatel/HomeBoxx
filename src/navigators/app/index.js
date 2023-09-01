@@ -12,9 +12,10 @@ const App = () => {
   const { user_metadata: userMetadata } = user;
   return (
     <NavigationContainer ref={navigationRef}>
-      {(!token || !(user?.name) || !(userMetadata?.pin))
+      {/* {(!token || !(user?.name) || !(userMetadata?.pin))
         ? <Auth />
-        : <Drawer />}
+        : <Drawer />} */}
+        <Drawer />
     </NavigationContainer>
   );
 };
