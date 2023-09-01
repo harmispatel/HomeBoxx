@@ -1,0 +1,31 @@
+import qs from 'qs';
+import api from './helper';
+
+export default {
+  requestPair: () => api.post('api/boxes/pairing-requests'),
+  getPairingRequest: (requestId) => api.get(`api/boxes/pairing-requests/${requestId}`),
+  editBox: (id, data) => api.put(`api/boxes/${id}`, data),
+  googleAutocomplete: (data) => api.get(`https://maps.googleapis.com/maps/api/place/autocomplete/json?${qs.stringify(data)}`),
+  fetchGooglePlaceDetail: (data) => api.get(`https://maps.googleapis.com/maps/api/place/details/json?${qs.stringify(data)}`),
+  fetchGooglePlaceGeocode: (data) => api.get(`https://maps.googleapis.com/maps/api/geocode/json?${qs.stringify(data)}`),
+  listBoxes: () => api.get('api/boxes'),
+  fetchBox: (id) => api.get(`api/boxes/${id}`),
+  fetchSecureCode: (id) => api.get(`api/boxes/${id}/totp`),
+  fetchDailyCode: (id) => api.get(`api/boxes/${id}/daily_totp`),
+  unpairBox: (id) => api.delete(`api/boxes/${id}`),
+  fetchUser: () => api.get('api/users'),
+  updateUser: (data) => api.put('api/users', data),
+  lockBox: (id) => api.put(`api/boxes/${id}/_lock`),
+  unlockBox: (id) => api.put(`api/boxes/${id}/_unlock`),
+  simulatePairing: (data) => api.put('api/boxes/simulate-pairing', data),
+  fetchEvents: (id, data) => api.get(`api/boxes/${id}/events?${qs.stringify(data, { arrayFormat: 'repeat' })}`),
+  listNotifications: (data) => api.get(`api/notifications?${qs.stringify(data)}`),
+  simulateEvent: (id, data) => api.post(`api/boxes/${id}/simulate-event`, data),
+  listAds: () => api.get('api/ads'),
+  shareSecureCode: (id, data) => api.put(`api/boxes/${id}/share-totp`, data),
+  shareDailyCode: (id, data) => api.put(`api/boxes/${id}/share-daily-totp`, data),
+  enableTempControl: (id) => api.put(`api/boxes/${id}/_ac-on`),
+  disableTempControl: (id) => api.put(`api/boxes/${id}/_ac-off`),
+  fetchOtherUser: (data) => api.get(`api/users/search?${qs.stringify(data)}`),
+  shareBox: (id, data) => api.put(`api/boxes/${id}/share-box`, data),
+};
